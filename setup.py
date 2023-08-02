@@ -8,7 +8,7 @@ BASEDIR = os.path.abspath(os.path.dirname(__file__))
 def get_version():
     """ Find the version of the package"""
     version = None
-    version_file = os.path.join(BASEDIR, 'ovos_tts_plugin_server', 'version.py')
+    version_file = os.path.join(BASEDIR, 'ovos_tts_plugin_elevenlabs', 'version.py')
     major, minor, build, alpha = (None, None, None, None)
     with open(version_file) as f:
         for line in f:
@@ -46,21 +46,21 @@ def get_description():
         long_description = f.read()
     return long_description
 
-PLUGIN_ENTRY_POINT = 'ovos-tts-plugin-server = ovos_tts_plugin_server:OVOSServerTTS'
-CONFIG_ENTRY_POINT = 'ovos-tts-plugin-server.config = ovos_tts_plugin_server:OVOSServerTTSConfig'
+PLUGIN_ENTRY_POINT = 'ovos-tts-plugin-elevenlabs = ovos_tts_plugin_elevenlabs:ElevenLabsTTSPlugin'
+CONFIG_ENTRY_POINT = 'ovos-tts-plugin-elevenlabs.config = ovos_tts_plugin_elevenlabs:ElevenLabsTTSConfig'
 
 
 setup(
-    name='ovos-tts-plugin-server',
+    name='ovos-tts-plugin-elevenlabs',
     version=get_version(),
-    description='ovos tts server plugin for mycroft',
+    description='elevenlabs tts server plugin for mycroft',
     long_description=get_description(),
     long_description_content_type="text/markdown",
-    url='https://github.com/OpenVoiceOS/ovos-tts-server-plugin',
-    author='JarbasAi',
-    author_email='jarbasai@mailfence.com',
+    url='https://github.com/formigteen/ovos-tts-plugin-elevenlabs',
+    author='FormigTeen',
+    author_email='msformigteen@live.com',
     license='Apache-2.0',
-    packages=['ovos_tts_plugin_server'],
+    packages=['ovos_tts_plugin_elevenlabs'],
     install_requires=required("requirements.txt"),
     zip_safe=True,
     include_package_data=True,
@@ -81,7 +81,7 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
     ],
-    keywords='mycroft OpenVoiceOS OVOS plugin tts',
+    keywords='mycroft OpenVoiceOS ElevenLabs plugin tts',
     entry_points={'mycroft.plugin.tts': PLUGIN_ENTRY_POINT,
                   'mycroft.plugin.tts.config': CONFIG_ENTRY_POINT}
 )

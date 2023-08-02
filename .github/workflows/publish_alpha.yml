@@ -6,7 +6,7 @@ on:
     branches:
       - dev
     paths-ignore:
-      - 'ovos_tts_plugin_server/version.py'
+      - 'ovos_tts_plugin_elevenlabs/version.py'
       - 'test/**'
       - '.github/**'
       - '.gitignore'
@@ -23,7 +23,7 @@ jobs:
     secrets:
       PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
     with:
-      version_file: "ovos_tts_plugin_server/version.py"
+      version_file: "ovos_tts_plugin_elevenlabs/version.py"
       publish_prerelease: true
       update_changelog: true
       alpha_var: VERSION_ALPHA
