@@ -17,6 +17,7 @@ class ElevenLabsTTSPlugin(TTS):
         self.similarity = self.config.get("similarity", 0.5)
         self.voice_style = self.config.get("style", 0.5)
         self.model = self.config.get("model", None)
+        self.latency_level = self.config.get("latency_level", 4)
         self.token = self.config.get("token", None)
 
     def get_params(self, sentence):
@@ -59,11 +60,17 @@ class ElevenLabsTTSPlugin(TTS):
     def get_url(self, url: str):
         return f'{url}/v1/text-to-speech/{self.voice_id}'
 
+    def get_queries(self):
+        return {
+            "optimize_streaming_latency": self.latency_level
+        }
+
     def _get_from_servers(self, params: dict):
         for url in self.get_servers():
             try:
                 r = requests.post(self.get_url(url),
-                    json=params, headers=self.get_headers())
+                        json=params, headers=self.get_headers(), params=self.get_queries()
+                    )
                 if r.ok:
                     return r.content
             except:
